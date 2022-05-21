@@ -12,10 +12,10 @@ class KodetrApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Photo View',
+        title: 'Simple Gallery',
         home: Scaffold(
           appBar: AppBar(
-            title: const Text('Photo View'),
+            title: const Text('Simple Gallery'),
           ),
           body: const PhotoGallery(),
         ));
