@@ -19,3 +19,5 @@ samples, guidance on mobile development, and a full API reference.
 ## Referenced List
 
 - Initial referenced source [link](https://www.kodetr.com/membuat-photo-view-gallery-menggunakan-flutter/)
+- Gif Splash screen [link](https://www.codegrepper.com/code-examples/whatever/flutter+how+to+use+gif+as+splash+screen+stackoverflow)
+- Naivation Drawer [link](https://www.youtube.com/watch?v=ufer4QTFTO8)
