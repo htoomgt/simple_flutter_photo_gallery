@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-
+import 'package:simple_flutter_photo_gallery/grid_gallery.dart';
 import 'my_drawer_header.dart';
 
 void main() {
@@ -13,20 +13,34 @@ class KodetrApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(title: 'Simple Gallery', home: ScafoldHoder());
+    return const MaterialApp(title: 'Simple Gallery', home: ScafoldHolder());
   }
 }
 
-class ScafoldHoder extends StatelessWidget {
-  const ScafoldHoder({Key? key}) : super(key: key);
+class ScafoldHolder extends StatefulWidget {
+  const ScafoldHolder({Key? key}) : super(key: key);
+
+  @override
+  State<ScafoldHolder> createState() => _ScafoldHolderState();
+}
+
+class _ScafoldHolderState extends State<ScafoldHolder> {
+  var currentPage = DrawerSections.slideGallery;
 
   @override
   Widget build(BuildContext context) {
+    var container;
+
+    if (currentPage == DrawerSections.slideGallery) {
+      container = const PhotoGalleryStful();
+    } else if (currentPage == DrawerSections.gridGallery) {
+      container = const GridGallery();
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text('Simple Gallery'),
       ),
-      body: const PhotoGalleryStful(),
+      body: container,
       drawer: Drawer(
         child: SingleChildScrollView(
           // ignore: avoid_unnecessary_containers
@@ -38,13 +52,49 @@ class ScafoldHoder extends StatelessWidget {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget MyDrawerList(BuildContext context) {
     return Container(
         width: double.maxFinite,
         height: MediaQuery.of(context).size.height,
         padding: const EdgeInsets.all(8.0),
-        color: Colors.amber[300],
-        child: const Text("Hello How are you?"));
+        // color: Colors.amber[300],
+        child: Column(
+          children: [
+            menuItem(1, 'Slide Gallery', Icons.browse_gallery, true),
+            menuItem(2, 'Grid Gallery', Icons.photo_album, true),
+          ],
+        ));
+  }
+
+  Widget menuItem(int id, String title, IconData icon, bool selected) {
+    return Material(
+        child: InkWell(
+            onTap: () {
+              Navigator.of(context, rootNavigator: true).pop();
+              setState(() {
+                if (id == 1) {
+                  currentPage = DrawerSections.slideGallery;
+                  print("slide gallery");
+                } else if (id == 2) {
+                  currentPage = DrawerSections.gridGallery;
+                  print("grid gallery");
+                }
+              });
+            },
+            child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Row(
+                  children: [
+                    Expanded(child: Icon(icon, size: 20, color: Colors.black)),
+                    Expanded(
+                        flex: 3,
+                        child: Text(
+                          title,
+                          style: const TextStyle(fontSize: 16),
+                        ))
+                  ],
+                ))));
   }
 }
 
@@ -137,4 +187,9 @@ class _PhotoGalleryStfulState extends State<PhotoGalleryStful> {
       ],
     );
   }
+}
+
+enum DrawerSections {
+  slideGallery,
+  gridGallery,
 }
