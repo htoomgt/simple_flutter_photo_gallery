@@ -27,16 +27,24 @@ class ScafoldHoder extends StatelessWidget {
         title: const Text('Simple Gallery'),
       ),
       body: const PhotoGalleryStful(),
-      drawer: SingleChildScrollView(
-          child: Container(
-        child: Column(
-          children: [
-            MyHeaderDrawer(),
-            // MyDrawerList()
-          ],
+      drawer: Drawer(
+        child: SingleChildScrollView(
+          // ignore: avoid_unnecessary_containers
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [MyHeaderDrawer(), MyDrawerList(context)]),
         ),
-      )),
+      ),
     );
+  }
+
+  Widget MyDrawerList(BuildContext context) {
+    return Container(
+        width: double.maxFinite,
+        height: MediaQuery.of(context).size.height,
+        padding: const EdgeInsets.all(8.0),
+        color: Colors.amber[300],
+        child: const Text("Hello How are you?"));
   }
 }
 

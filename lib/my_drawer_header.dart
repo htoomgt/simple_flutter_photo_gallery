@@ -24,7 +24,8 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
             decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                    image: AssetImage('assets/images/for_profile_image.jpg'))),
+                    image: AssetImage(
+                        'assets/images/for_hm_thati_profile_pic.png'))),
           ),
           const Text("Rapid Tech",
               style: TextStyle(color: Colors.white, fontSize: 20)),
