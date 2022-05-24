@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
+import 'my_drawer_header.dart';
+
 void main() {
   runApp(const KodetrApp());
 }
@@ -21,10 +23,20 @@ class ScafoldHoder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Simple Gallery'),
+      appBar: AppBar(
+        title: const Text('Simple Gallery'),
+      ),
+      body: const PhotoGalleryStful(),
+      drawer: SingleChildScrollView(
+          child: Container(
+        child: Column(
+          children: [
+            MyHeaderDrawer(),
+            // MyDrawerList()
+          ],
         ),
-        body: const PhotoGalleryStful());
+      )),
+    );
   }
 }
 
